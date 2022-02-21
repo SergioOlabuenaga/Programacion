@@ -3,6 +3,9 @@ package com.company;
 import javax.swing.*;
 import Vista.*;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Main {
 
     private static JFrame v;
@@ -22,18 +25,13 @@ public class Main {
         v. setVisible(true);
     }
 
-    public static void cambio() {
-        v.setVisible(false);
-        c = new JFrame(" Principal ");
-        c.setContentPane(new InicioSesion().getpPrincipal());
-        c. setDefaultCloseOperation (JFrame. EXIT_ON_CLOSE );
-        c.pack();
-        c.setVisible(true);
-    }
-
-    public static void login() {
-        c.setVisible(false);
-
-        a.setVisible(true);
+    public static void Comprobacion(){
+        Pattern patron = Pattern.compile("ˆ[0-9]{8}[A-Z]{1}$");
+        Matcher m = patron.matcher(tfNIF.getText());
+        do {
+            JOptionPane.showMessageDialog(null, "ocho numeros y una letra mayuscula");
+            tfNIF.setText("");
+        }
+        while(!m.matches());
     }
 }
