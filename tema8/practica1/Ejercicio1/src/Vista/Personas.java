@@ -181,6 +181,8 @@ public class Personas extends JDialog {
         bSiguiente.requestFocus();
     }
 
+
+
     public void visualizarBG1(boolean b)
     {
         BG1.setVisible(b);

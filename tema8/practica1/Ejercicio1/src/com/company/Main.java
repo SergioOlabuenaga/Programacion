@@ -77,9 +77,7 @@ public class Main {
 
     private static void crearPersonas() {
         vp = new Personas(opcion);
-        vp.setContentPane(vp.getpPrincipal());
-        vp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //vo.setLocationRelativeTo(null);
+        vp.setContentPane(new Personas(opcion).getpPrincipal());
         vp.pack();
         vp.setVisible(true);
     }

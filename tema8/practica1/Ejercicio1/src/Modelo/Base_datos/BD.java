@@ -3,7 +3,7 @@ package Modelo.Base_datos;
 import java.sql.*;
 
 public class BD {
-    private String url = "jdbc:mysql://localhost:3306/t8e1";
+    private String url = "jdbc:mysql://localhost:3306/personas";
     private String user = "root";
     private String passwd = "usbw";
 

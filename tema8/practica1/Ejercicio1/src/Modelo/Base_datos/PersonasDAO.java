@@ -20,7 +20,7 @@ public class PersonasDAO {
     {
         // Preparar y ejecutar la sentencia sql.
 
-        String plantilla = "INSERT INTO personas VALUES (?,?,?,?);";
+        String plantilla = "INSERT INTO persona VALUES (?,?,?,?);";
         PreparedStatement ps = con.prepareStatement(plantilla);
         ps.setString(1, p.getNombre());
         ps.setInt(2,p.getEdad());
@@ -36,7 +36,7 @@ public class PersonasDAO {
     {
         Persona persona=null;
 
-        PreparedStatement consulta = con.prepareStatement("SELECT * FROM personas where nombre = ? ");
+        PreparedStatement consulta = con.prepareStatement("SELECT * FROM persona where nombre = ? ");
         consulta.setString(1, nombre);
         ResultSet res = consulta.executeQuery();
         // 0 o 1 fila seleccionada
@@ -63,7 +63,7 @@ public class PersonasDAO {
         ArrayList< Persona> listaPersonas = new ArrayList();
 
         Statement consulta = con.createStatement();
-        ResultSet res = consulta.executeQuery("Select * from personas;");
+        ResultSet res = consulta.executeQuery("Select * from persona;");
         // n filas seleccionadas
         while(res.next())
         {
