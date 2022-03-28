@@ -61,6 +61,7 @@ public class vInsertar extends JDialog {
             validarHoras();
             validarAforo();
             Main.getDatosEvento(tfNombre.getText(),tfLugar.getText(),Fecha,HoraInicio,HoraFin,aforo);
+            dispose();
         }
         catch (Exception e){
             JOptionPane.showMessageDialog(null,e.getMessage());
@@ -87,7 +88,7 @@ public class vInsertar extends JDialog {
     private void validarFecha() throws Exception {
         if (tfFecha.getText().isEmpty())
             throw new Exception("La fecha del acontecimeinto es un dato obligatorio");
-        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/mm/YYYY");
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         Fecha = LocalDate.parse(tfFecha.getText(), formato);
         if (Fecha.compareTo(LocalDate.now())<=0)
             throw new Exception("La fecha introducida no puede ser menor a la fecha de hoy");

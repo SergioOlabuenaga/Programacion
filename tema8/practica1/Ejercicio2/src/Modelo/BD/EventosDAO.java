@@ -6,7 +6,6 @@ import Modelo.UML.Evento;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 public class EventosDAO {
 
@@ -20,11 +19,11 @@ public class EventosDAO {
         /* Método que inserta una fila en la tabla de los acontecimientos a partir de un objeto de tipo acontecimiento.
         Este método también se suele llamar save.*/
 
-        // Abrir la conexión
+
         BD.abrirBD();
 
-        // Preparar la sentencia que se quiere ejecutar
-        plantilla = "INSERT INTO acontecimientos (nombre, lugar, fecha,hora_i, hora_f, aforo) VALUES (?,?,?,?,?,?)";
+
+        plantilla = "INSERT INTO acontecimiento (Nombre, Lugar, Fecha, Hora_Inicio, Hora_Fin, Aforo) VALUES (?,?,?,?,?,?)";
         sentenciaPre = BD.getCon().prepareStatement(plantilla);
         sentenciaPre.setString(1,e.getNombre());
         sentenciaPre.setString(2,e.getLugar());
@@ -33,11 +32,11 @@ public class EventosDAO {
         sentenciaPre.setTime(5, conversionTime(e.getHoraF()));
         sentenciaPre.setInt(6,e.getAforo());
 
-        // Ejecutar sentencia
-        int n = sentenciaPre.executeUpdate();
-        System.out.println( n + "filas insertadas");
 
-        // Cerrar la conexión
+        int n = sentenciaPre.executeUpdate();
+        System.out.println( n + " filas insertadas");
+
+
         BD.cerrarBD();
     }
 
@@ -47,5 +46,54 @@ public class EventosDAO {
 
     private static java.sql.Date conversionDate(LocalDate fecha) {
         return java.sql.Date.valueOf(fecha);
+    }
+
+    public static Evento consultarEvento(String n) throws Exception{
+        BD.abrirBD();
+
+        plantilla = "select * from acontecimiento where nombre = ?";
+        sentenciaPre = BD.getCon().prepareStatement(plantilla);
+        sentenciaPre.setString(1,n);
+
+        resultado = sentenciaPre.executeQuery();
+        if (resultado.next())
+        {
+            crearObjeto();
+        }
+        else
+            throw new Exception("No hay eventos con ese nombre");
+
+        BD.cerrarBD();
+
+        return evento;
+    }
+
+    public static void crearObjeto() throws Exception
+    {
+        evento = new Evento();
+        evento.setNombre(resultado.getString("nombre"));
+        evento.setLugar(resultado.getString("lugar"));
+        evento.setFecha(resultado.getDate("fecha").toLocalDate());
+        evento.setHoraI(resultado.getTime("hora_inicio").toLocalTime());
+        evento.setHoraF(resultado.getTime("hora_fin").toLocalTime());
+        evento.setAforo(resultado.getInt("aforo"));
+    }
+
+    public static void borrar(Evento e) throws Exception{
+
+        BD.abrirBD();
+
+        plantilla = "delete from acontecimiento where nombre = ?";
+        sentenciaPre = BD.getCon().prepareStatement(plantilla);
+        sentenciaPre.setString(1,e.getNombre());
+
+        int n = sentenciaPre.executeUpdate();
+        if(n == 0)
+            throw new Exception();
+
+        System.out.println(n + " filas borradas");
+
+        BD.cerrarBD();
+
     }
 }

@@ -11,7 +11,7 @@ public class BD {
         // setCon también es un buen nombre para este método
         // En el constructor como en el ejercicio anterior
         Class.forName("com.mysql.cj.jdbc.Driver");
-        String url="jdbc:mysql://localhost:3306/"+"acontecimiento";
+        String url="jdbc:mysql://localhost:3306/"+"eventos";
         con = DriverManager.getConnection(url,"root","usbw");
     }
 

@@ -45,4 +45,20 @@ public class Main {
 
         EventosDAO.alta(e);
     }
+
+    public static String cancelarEvento(String nombre) throws Exception{
+
+        e = EventosDAO.consultarEvento(nombre);
+        return e.toString();
+    }
+
+    public static void borrarEvento() throws Exception{
+
+        EventosDAO.borrar(e);
+
+    }
+
+    public static void dispose() {
+        vp.dispose();
+    }
 }
