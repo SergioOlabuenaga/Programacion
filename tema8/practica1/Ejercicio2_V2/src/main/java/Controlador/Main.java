@@ -13,7 +13,11 @@ import java.time.LocalTime;
 public class Main {
 
     private static JFrame vp;
+<<<<<<< HEAD
     private static AcontecimientoEntity a;
+=======
+    private static Acontecimiento a;
+>>>>>>> main
 
     public static void main(String[] args) {
 	// write your code here
@@ -39,7 +43,11 @@ public class Main {
 
     public static void getDatosEvento(String n, String l, LocalDate f, LocalTime hi, LocalTime hf, int af) throws Exception {
 
+<<<<<<< HEAD
         a = new AcontecimientoEntity(n,l, Date.valueOf(f), Time.valueOf(hi),Time.valueOf(hf),af);
+=======
+        a = new Acontecimiento(n,l, Date.valueOf(f), Time.valueOf(hi),Time.valueOf(hf),af);
+>>>>>>> main
 
         AcontecimientoDAO.alta(a);
     }

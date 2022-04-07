@@ -16,7 +16,11 @@ public class AcontecimientoDAO {
     private static EntityManager em;
     private static EntityTransaction transaction;
 
+<<<<<<< HEAD
     public static String alta(AcontecimientoEntity a) throws Exception{
+=======
+    public static String alta(Acontecimiento a) throws Exception{
+>>>>>>> main
 
         String mensaje;
         try{
