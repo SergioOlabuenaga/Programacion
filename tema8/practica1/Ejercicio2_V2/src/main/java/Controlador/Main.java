@@ -6,13 +6,15 @@ import Vista.*;
 
 import javax.persistence.*;
 import javax.swing.*;
+import java.sql.Date;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Main {
 
     private static JFrame vp;
-    private static Acontecimiento e;
+    private static Acontecimiento a;
 
     public static void main(String[] args) {
 	// write your code here
@@ -41,22 +43,11 @@ public class Main {
 
     public static void getDatosEvento(String n, String l, LocalDate f, LocalTime hi, LocalTime hf, int af) throws Exception {
 
-        e = new Acontecimiento(n,l,f,hi,hf,af);
+        a = new Acontecimiento(n,l, Date.valueOf(f), Time.valueOf(hi),Time.valueOf(hf),af);
 
-        AcontecimientoDAO.alta(e);
+        AcontecimientoDAO.alta(a);
     }
 
-    public static String cancelarEvento(String nombre) throws Exception{
-
-        e = AcontecimientoDAO.consultarEvento(nombre);
-        return e.toString();
-    }
-
-    public static void borrarEvento() throws Exception{
-
-        AcontecimientoDAO.borrar(e);
-
-    }
 
     public static void dispose() {
         vp.dispose();
