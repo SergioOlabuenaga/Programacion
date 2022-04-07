@@ -3,14 +3,16 @@ package Modelo;
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.Objects;
 
 @Entity
-public class Acontecimiento {
+@Table(name = "acontecimiento", schema = "eventos", catalog = "")
+public class AcontecimientoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @Column(name = "ID")
+    private int id;
+    @Basic
     @Column(name = "Nombre")
     private String nombre;
     @Basic
@@ -29,16 +31,24 @@ public class Acontecimiento {
     @Column(name = "Aforo")
     private int aforo;
 
-    public Acontecimiento() {
+    public AcontecimientoEntity() {
     }
 
-    public Acontecimiento(String nombre, String lugar, LocalDate fecha, LocalTime horaI, LocalTime horaF, int aforo) {
+    public AcontecimientoEntity(String nombre, String lugar, Date fecha, Time horaInicio, Time horaFin, int aforo) {
         this.nombre = nombre;
         this.lugar = lugar;
-        this.fecha = Date.valueOf(fecha);
-        this.horaInicio = Time.valueOf(horaI);
-        this.horaFin = Time.valueOf(horaF);
+        this.fecha = fecha;
+        this.horaInicio = horaInicio;
+        this.horaFin = horaFin;
         this.aforo = aforo;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -57,7 +67,7 @@ public class Acontecimiento {
         this.lugar = lugar;
     }
 
-    public LocalDate getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
@@ -65,7 +75,7 @@ public class Acontecimiento {
         this.fecha = fecha;
     }
 
-    public LocalTime getHoraInicio() {
+    public Time getHoraInicio() {
         return horaInicio;
     }
 
@@ -73,7 +83,7 @@ public class Acontecimiento {
         this.horaInicio = horaInicio;
     }
 
-    public LocalTime getHoraFin() {
+    public Time getHoraFin() {
         return horaFin;
     }
 
@@ -93,12 +103,12 @@ public class Acontecimiento {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Acontecimiento that = (Acontecimiento) o;
-        return aforo == that.aforo && Objects.equals(nombre, that.nombre) && Objects.equals(lugar, that.lugar) && Objects.equals(fecha, that.fecha) && Objects.equals(horaInicio, that.horaInicio) && Objects.equals(horaFin, that.horaFin);
+        AcontecimientoEntity that = (AcontecimientoEntity) o;
+        return id == that.id && aforo == that.aforo && Objects.equals(nombre, that.nombre) && Objects.equals(lugar, that.lugar) && Objects.equals(fecha, that.fecha) && Objects.equals(horaInicio, that.horaInicio) && Objects.equals(horaFin, that.horaFin);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nombre, lugar, fecha, horaInicio, horaFin, aforo);
+        return Objects.hash(id, nombre, lugar, fecha, horaInicio, horaFin, aforo);
     }
 }
