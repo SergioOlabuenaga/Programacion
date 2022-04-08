@@ -15,6 +15,7 @@ public class AcontecimientoDAO {
     private static EntityManagerFactory emf;
     private static EntityManager em;
     private static EntityTransaction transaction;
+    private static AcontecimientoEntity ac;
 
     public static String alta(AcontecimientoEntity a) throws Exception{
 
@@ -42,4 +43,52 @@ public class AcontecimientoDAO {
         return mensaje;
     }
 
+    public static AcontecimientoEntity consultarEvento(String nombre) {
+        String mensaje;
+        try{
+            emf = Persistence.createEntityManagerFactory("default");
+            em = emf.createEntityManager();
+            transaction = em.getTransaction();
+            transaction.begin();
+            ac = em.find(AcontecimientoEntity.class,nombre);
+        }
+        catch (Exception e){
+            ac = null;
+        }
+        finally {
+            if (transaction.isActive()){
+                transaction.rollback();
+            }
+            em.close();
+            emf.close();
+        }
+       return ac;
+    }
+
+    public static String borrar() {
+
+        String mensaje;
+        try{
+            emf = Persistence.createEntityManagerFactory("default");
+            em = emf.createEntityManager();
+            transaction = em.getTransaction();
+            transaction.begin();
+            ac = em.find(AcontecimientoEntity.class,ac.getNombre());
+            em.remove(ac);
+            transaction.commit();
+            mensaje = "ok";
+        }
+        catch (Exception e){
+            mensaje = e.getMessage();
+        }
+        finally {
+            if (transaction.isActive()){
+                transaction.rollback();
+            }
+            em.close();
+            emf.close();
+        }
+        return mensaje;
+
+    }
 }

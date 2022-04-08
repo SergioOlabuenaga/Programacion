@@ -34,11 +34,7 @@ public class AcontecimientoEntity {
     public AcontecimientoEntity() {
     }
 
-<<<<<<< HEAD:tema8/practica1/Ejercicio2_V2/src/main/java/Modelo/AcontecimientoEntity.java
     public AcontecimientoEntity(String nombre, String lugar, Date fecha, Time horaInicio, Time horaFin, int aforo) {
-=======
-    public Acontecimiento(String nombre, String lugar, Date fecha, Time horaInicio, Time horaFin, int aforo) {
->>>>>>> main:tema8/practica1/Ejercicio2_V2/src/main/java/Modelo/Acontecimiento.java
         this.nombre = nombre;
         this.lugar = lugar;
         this.fecha = fecha;
@@ -107,11 +103,7 @@ public class AcontecimientoEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-<<<<<<< HEAD:tema8/practica1/Ejercicio2_V2/src/main/java/Modelo/AcontecimientoEntity.java
         AcontecimientoEntity that = (AcontecimientoEntity) o;
-=======
-        Acontecimiento that = (Acontecimiento) o;
->>>>>>> main:tema8/practica1/Ejercicio2_V2/src/main/java/Modelo/Acontecimiento.java
         return id == that.id && aforo == that.aforo && Objects.equals(nombre, that.nombre) && Objects.equals(lugar, that.lugar) && Objects.equals(fecha, that.fecha) && Objects.equals(horaInicio, that.horaInicio) && Objects.equals(horaFin, that.horaFin);
     }
 

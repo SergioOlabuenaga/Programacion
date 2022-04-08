@@ -39,6 +39,13 @@
                       <text value="Insertar"/>
                     </properties>
                   </component>
+                  <component id="c464b" class="javax.swing.JButton" binding="bCancelar">
+                    <constraints/>
+                    <properties>
+                      <enabled value="true"/>
+                      <text value="Cancelar"/>
+                    </properties>
+                  </component>
                   <component id="87a87" class="javax.swing.JButton" binding="bSalir">
                     <constraints/>
                     <properties>

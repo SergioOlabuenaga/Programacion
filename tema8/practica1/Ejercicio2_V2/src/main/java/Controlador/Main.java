@@ -44,6 +44,21 @@ public class Main {
         AcontecimientoDAO.alta(a);
     }
 
+    public static String cancelarEvento(String nombre) throws Exception{
+
+        a = AcontecimientoDAO.consultarEvento(nombre);
+        if (a != null)
+        return a.toString();
+
+        throw new Exception("No hay ningun evento con ese nombre");
+    }
+
+    public static void borrarEvento() throws Exception{
+
+        AcontecimientoDAO.borrar();
+
+    }
+
 
     public static void dispose() {
         vp.dispose();
